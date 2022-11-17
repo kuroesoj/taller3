@@ -1,30 +1,23 @@
 import React, { useEffect } from 'react'
 import { checkIfIsLoggedIn, getLoggedInUserId  } from '../utils';
 import ReactDOM from 'react-dom';
-import 'froala-editor/js/froala_editor.pkgd.min.js';
-import 'froala-editor/css/froala_style.min.css';
-import 'froala-editor/css/froala_editor.pkgd.min.css';
 
-  
-import FroalaEditor from 'react-froala-wysiwyg';
-// Include special components if required.
-// import FroalaEditorView from 'react-froala-wysiwyg/FroalaEditorView';
-// import FroalaEditorA from 'react-froala-wysiwyg/FroalaEditorA';
-// import FroalaEditorButton from 'react-froala-wysiwyg/FroalaEditorButton';
-// import FroalaEditorImg from 'react-froala-wysiwyg/FroalaEditorImg';
-// import FroalaEditorInput from 'react-froala-wysiwyg/FroalaEditorInput';
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import axios from 'axios'; 
+import JoditEditor from 'jodit-react'
 
 const logeado = checkIfIsLoggedIn();
 const idUser = getLoggedInUserId();
 const API = process.env.REACT_APP_API;
 
-
 const CrearProyecto = () => {
-    const [libro1,  setProyecto] = useState("");
 
+    const config ={
+        buttons: ["bold", "italic", "underline", "link", "unlink", "source"],
+    }
+   
+    const [libro1,  setProyecto] = useState("");
+    const[value, setValue] = useState('')
     const getUser = async () => {
 
         const res = await axios.get(`${API}/users/${idUser}`, {
@@ -35,9 +28,18 @@ const CrearProyecto = () => {
         
         setProyecto(data['libro1']);
     };
+   
+
+    const RichTextEditor = ({setValue, config, initialValue}) => {
+        const Editor = useRef(null);
+    return <JoditEditor ref = {Editor}
+                        onChange={content => setValue(content)} 
+                        config={config}
+                        value = {initialValue}/>
+}  
+
     useEffect(() => {
         getUser();
-    
           });
 
     return (
@@ -66,13 +68,9 @@ const CrearProyecto = () => {
 
                     {/* Editor de texto*/}
                     <div className='col-sm'>
-                        
-                        <FroalaEditor
-                          tag='textarea'
-                        
-                       
-                        
-                        />
+                    <RichTextEditor setValue={setValue} config={config}  initialValue={'<strong>Hola </strong>'}></RichTextEditor>
+                    {value}
+
                     </div>
                 </>
             )}
@@ -91,7 +89,7 @@ const CrearProyecto = () => {
                             <p>
                                 Crea una cuenta para acceder a este y más beneficios.
                             </p>
-                            
+                            {value}
                                 <a href="#" class="btn btn-primary mb-2">Crear cuenta</a>
                                 <h6 className="text-center text-secondary">¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></h6>
  

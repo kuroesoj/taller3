@@ -1,5 +1,4 @@
 import { checkIfIsLoggedIn, getLoggedInUserId } from '../utils';
-import Editor from "./Editor";
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import axios from 'axios'; 
@@ -66,14 +65,14 @@ const Proyecto = () => {
         await axios.post(`/users/nuevoproyecto2/${idUser}`,{
             nuevoNombreP2, nuevaDes2
         }); 
-        window.location = "/proyecto/crear2";
+        window.location = "/proyecto/crear";
     };
 
     const crearlibro3 = async () => {      
         await axios.post(`/users/nuevoproyecto3/${idUser}`,{
             nuevoNombreP3, nuevaDes3
         }); 
-        window.location = "/proyecto/crear3";
+        window.location = "/proyecto/crear";
     };
     
     const editarlibro1 = async () => {      
@@ -84,14 +83,14 @@ const Proyecto = () => {
     };
 
     const editarlibro2 = async () => {      
-        await axios.put(`${API}/users/nuevoproyecto2/${idUser}`,{
+        await axios.put(`${API}/users/nuevoproyecto/${idUser}`,{
             nuevoNombreP, nuevaDes
         }); 
         window.location = "/proyecto";
     };
 
     const editarlibro3 = async () => {      
-        await axios.put(`${API}/users/nuevoproyecto3/${idUser}`,{
+        await axios.put(`${API}/users/nuevoproyecto/${idUser}`,{
             nuevoNombreP, nuevaDes
         }); 
         window.location = "/proyecto";
@@ -175,7 +174,7 @@ const Proyecto = () => {
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">2</th>
-                                                        <td><a href='/proyecto/crear2'> {usuario} </a></td>
+                                                        <td><a href='/proyecto/crear'> {usuario} </a></td>
                                                         <td>{usuario}</td>
                                                         <td className='d-flex align-content-md-center'>
                                                             <button type="button" class="btn btn-secondary btn-sm me-1">
@@ -203,7 +202,7 @@ const Proyecto = () => {
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">3</th>
-                                                        <td><a href='/proyecto/crear3'> {usuario} </a></td>
+                                                        <td><a href='/proyecto/crear'> {usuario} </a></td>
                                                         <td>{usuario}</td>
                                                         <td className='d-flex align-content-md-center'>
                                                             <button type="button" class="btn btn-secondary btn-sm me-1">
@@ -244,13 +243,13 @@ const Proyecto = () => {
                                               <div class="modal-body">
                                               <h5>Nombre del proyecto</h5>
                                               <div className='col mb-3'>
-                                                <input class="form-control" placeholder="Nombre de tu Proyecto" id="exampleFormControlTextarea1" rows="1" onChange={(e) => setnComentario(e.target.value)}></input>
+                                                <input class="form-control" placeholder="Nombre de tu Proyecto" id="exampleFormControlTextarea1" rows="1" onChange={(e) => setnComentario(e.target.value)} required></input>
                                                 </div>
                                                 <div className='col'>
                                                     <h5>Descripción del proyecto</h5>
                                                 </div>
                                                 <div className='col mb-3'>
-                                                <textarea class="form-control" placeholder="Descripcion de tu Proyecto" id="exampleFormControlTextarea1" rows="3" onChange={(e) => setnDescripcion(e.target.value)}></textarea>
+                                                <textarea class="form-control" placeholder="Descripcion de tu Proyecto" id="exampleFormControlTextarea1" rows="3" onChange={(e) => setnDescripcion(e.target.value)} ></textarea>
                                                 </div>
                                                 <div className='col'>
                                                     <h5>Autor</h5>
@@ -295,7 +294,7 @@ const Proyecto = () => {
                                                 <div className='col mb-3'>
                                                     
                                                     <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Separar por comas..." aria-label="Recipient's username" aria-describedby="button-addon2" onChange={(e) => setEtiquetasPDF(e.target.value)} />
+                                                    <input type="text" class="form-control" placeholder="Separar por comas..." aria-label="Recipient's username" aria-describedby="button-addon2" onChange={(e) => setEtiquetasPDF(e.target.value)} required />
                                                     <button class="btn btn-outline-secondary" type="button" id="button-addon2" onClick={(e) => agregarEtiquetas(etiquetasPDF)}>+</button>
                                                 </div>
 
@@ -314,7 +313,7 @@ const Proyecto = () => {
                                                 </div>
                                                 <div className='col mb-3'>
                                                 <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" id="inputGroupFile01"/>
+                                                    <input type="file" class="form-control" id="inputGroupFile01" required/>
                                                 </div>
                                                 </div>
 
@@ -347,7 +346,7 @@ const Proyecto = () => {
                                               <div class="modal-body">
                                               <h5>Nombre del proyecto</h5>
                                               <div className='col mb-3'>
-                                                <input class="form-control" placeholder="Nombre de tu Proyecto" id="exampleFormControlTextarea1" rows="1" onChange={(e) => setnComentario(e.target.value)}></input>
+                                                <input class="form-control" placeholder="Nombre de tu Proyecto" id="exampleFormControlTextarea1" rows="1" onChange={(e) => setnComentario(e.target.value)} required></input>
                                                 </div>
                                                 <div className='col'>
                                                     <h5>Descripción del proyecto</h5>
@@ -398,7 +397,7 @@ const Proyecto = () => {
                                                 </div>
                                                 <div className='col mb-3'>
                                                     <div class="input-group mb-1">
-                                                        <input type="text" class="form-control" placeholder="Separar por comas..." aria-label="Recipient's username" aria-describedby="button-addon2"/>
+                                                        <input type="text" class="form-control" placeholder="Separar por comas..." aria-label="Recipient's username" aria-describedby="button-addon2" required/>
                                                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">+</button>
                                                     </div>
                                                     <span class="badge text-bg-primary m-1">Libro</span>
@@ -442,7 +441,7 @@ const Proyecto = () => {
                                               <div class="modal-body">
                                               <h5>Nombre del proyecto</h5>
                                               <div className='col mb-3'>
-                                                <input class="form-control" placeholder="Nombre de tu Proyecto" id="exampleFormControlTextarea1" rows="1" onChange={(e) => setnComentario(e.target.value)}></input>
+                                                <input class="form-control" placeholder="Nombre de tu Proyecto" id="exampleFormControlTextarea1" rows="1" onChange={(e) => setnComentario(e.target.value)} required></input>
                                                 </div>
                                                 <div className='col'>
                                                     <h5>Descripción del proyecto</h5>
@@ -494,7 +493,7 @@ const Proyecto = () => {
                                                 </div>
                                                 <div className='col mb-3'>
                                                     <div class="input-group mb-1">
-                                                        <input type="text" class="form-control" placeholder="Separar por comas..." aria-label="Recipient's username" aria-describedby="button-addon2"/>
+                                                        <input type="text" class="form-control" placeholder="Separar por comas..." aria-label="Recipient's username" aria-describedby="button-addon2" required />
                                                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">+</button>
                                                     </div>
                                                     <span class="badge text-bg-primary m-1">Libro</span>
@@ -591,7 +590,7 @@ const Proyecto = () => {
                                                 <h5>Nombre del libro</h5>
                                             </div>
                                             <div className='col mb-3'>
-                                                <input onChange={(e) => setTituloPDF(e.target.value)} type="text" class="form-control" id="recipient-name" placeholder='Nombre...'/>
+                                                <input onChange={(e) => setTituloPDF(e.target.value)} type="text" class="form-control" id="recipient-name" placeholder='Nombre...' required/>
                                             </div>
 
                                             <div className='col'>
@@ -607,7 +606,7 @@ const Proyecto = () => {
                                             
                                             <div className='col mb-3'>
                                                 <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Separar por comas..." aria-label="Recipient's username" aria-describedby="button-addon2" onChange={(e) => setEtiquetasPDF(e.target.value)} />
+                                                    <input type="text" class="form-control" placeholder="Separar por comas..." aria-label="Recipient's username" aria-describedby="button-addon2" onChange={(e) => setEtiquetasPDF(e.target.value)} required />
                                                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">+</button>
                                                 </div>
                                             </div>
@@ -619,7 +618,7 @@ const Proyecto = () => {
                                                     </div>
                                                     <div className='col mb-3'>
                                                         <div class="input-group mb-3">
-                                                            <input type="file" name="portada" class="form-control" id="inputGroupFile01" accept=".jpg, .jpeg, .png"/>
+                                                            <input type="file" name="portada" class="form-control" id="inputGroupFile01" accept=".jpg, .jpeg, .png" required/>
                                                         </div>
                                                     </div>
     
@@ -628,7 +627,7 @@ const Proyecto = () => {
                                                     </div>
                                                     <div className='col mb-3'>
                                                         <div className='col mb-3'>
-                                                            <input type="text" class="form-control" id="recipient-name" placeholder={usuario} disabled/>
+                                                            <input type="text" class="form-control" id="recipient-name" placeholder={usuario} disabled required/>
                                                         </div>
                                                     </div>
                                                 
@@ -638,7 +637,7 @@ const Proyecto = () => {
                                                 
                                                     <div className='col mb-3'>
                                                         <div class="input-group mb-3">
-                                                            <input type="file" name="file" class="form-control" id="inputGroupFile01" enctype="multipart/form-data" accept=".pdf"/>
+                                                            <input type="file" name="file" class="form-control" id="inputGroupFile01" enctype="multipart/form-data" accept=".pdf" required/>
                                                         </div>
                                                     </div>
                                                     <div className='col'></div>

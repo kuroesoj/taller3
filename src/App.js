@@ -34,7 +34,6 @@ function App() {
                 {/* Acá va el editor de texto, pero hay que arreglarlo porque está algo bug*/}
                 <Route path="/proyecto" element={<Proyecto/>}/> 
                 <Route path="/proyecto/crear" element={<CrearProyecto/>}/>
-                <Route path="/EditorTexto" element={<EditorTexto/>}/>
                 {/* Acá está el componente de perfil de configuración del perfil de usuario */}
                 <Route path="/configuracion" element={<ConfPerfil/>}/>
                 {/* Acá está el componente perfil de usuario */}
